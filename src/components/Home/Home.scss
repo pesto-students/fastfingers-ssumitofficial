@@ -1,0 +1,26 @@
+.score-board {
+    border-color: #ff5155 !important;
+    border-radius: 8px;
+}
+
+.score-board-title {
+    color: #ff5155;
+    font-size: 1rem;
+}
+
+.score-board-items {
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.stop-game {
+    color: #ff5155;
+    margin-top: 5rem;
+    font-size: 2rem;
+    cursor: pointer;
+
+    span {
+        margin-left: 1rem;
+        font-size: 1.5rem;
+    }
+}
