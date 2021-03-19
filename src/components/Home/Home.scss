@@ -1,6 +1,8 @@
 .score-board {
     border-color: #ff5155 !important;
     border-radius: 8px;
+    height: 60vh;
+    overflow-y: auto;
 }
 
 .score-board-title {
@@ -11,6 +13,11 @@
 .score-board-items {
     color: #ffffff;
     font-size: 1rem;
+}
+
+.personal-best {
+    color: #ff5155;
+    font-size: 0.5rem;
 }
 
 .stop-game {

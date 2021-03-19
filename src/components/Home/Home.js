@@ -10,13 +10,16 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons'
 export default function Home() {
     const [gameResults, setGameResults] = useState([]);
     const [timePassed, setTimePassed] = useState(0);
+    const [gameId, setGameId] = useState(1);
     const [runTimer, setRunTimer] = useState(true);
 
     const handleGameEnd = () => {
-        if(gameResults.length > 7) {
+        if (gameResults.length > 7) {
             gameResults.shift();
         }
-        setGameResults([...gameResults, timePassed]);
+
+        setGameResults([...gameResults, { gameId, timePassed }]);
+        setGameId(gameId + 1);
         setRunTimer(false);
     }
 
@@ -46,14 +49,14 @@ export default function Home() {
                     :
                     <div className="row">
                         <div className="col-12 game-result">
-                            <p className="text-white p-0 m-0 pt-5 title">SCORE : GAME {gameResults.length}</p>
+                            <p className="text-white p-0 m-0 pt-5 title">SCORE : GAME {gameId - 1}</p>
                             <p className="text-white p-0 m-0 time">{formatTime(timePassed)}</p>
                             {
-                                Math.max(...gameResults) < timePassed ?
+                                Math.max(...gameResults.map(({timePassed}) => { return timePassed})) < timePassed ?
                                     <p className="text-white p-0 m-0 high-score">New High Score</p>
                                     : ''
                             }
-                            <p className="play-again mt-4" onClick={handlePlayAgain}><FontAwesomeIcon icon={faTimes}/> PALY AGAIN</p>
+                            <p className="play-again mt-4" onClick={handlePlayAgain}><FontAwesomeIcon icon={faTimes} /> PALY AGAIN</p>
                         </div>
                     </div>
             }

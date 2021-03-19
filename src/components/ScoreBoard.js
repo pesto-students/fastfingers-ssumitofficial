@@ -3,8 +3,19 @@ import PropTypes from "prop-types";
 import { formatTime } from "../util";
 
 function ScoreBoard({ gameResults }) {
-    const content = gameResults.map((element, index) => {
-        return <p key={index} className="score-board-items">Game {index + 1}  : {formatTime(element)}</p>;
+    const bestScore = Math.max(...gameResults.map(({timePassed}) => { return timePassed}));
+
+    const content = gameResults.map(({ gameId, timePassed }) => {
+        return (
+            <div key={gameId}>
+                {
+                    timePassed === bestScore  ?
+                    <p className="p-0 m-0 personal-best">PERSONAL BEST</p>
+                    : ''
+                }
+                <p className="score-board-items mb-1">Game {gameId}  : {formatTime(timePassed)}</p>
+            </div>
+        );
     });
 
     return (
