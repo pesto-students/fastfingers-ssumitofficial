@@ -5,7 +5,7 @@ import ScoreBoard from "../ScoreBoard";
 import PlayArea from "../PlayArea/PlayArea";
 import { formatTime } from "../../util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes,faRedoAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default function Home() {
     const [gameResults, setGameResults] = useState([]);
@@ -56,7 +56,7 @@ export default function Home() {
                                     <p className="text-white p-0 m-0 high-score">New High Score</p>
                                     : ''
                             }
-                            <p className="play-again mt-4" onClick={handlePlayAgain}><FontAwesomeIcon icon={faTimes} /> PALY AGAIN</p>
+                            <p className="play-again mt-4" onClick={handlePlayAgain}><FontAwesomeIcon icon={faRedoAlt} /> PLAY AGAIN</p>
                         </div>
                     </div>
             }
