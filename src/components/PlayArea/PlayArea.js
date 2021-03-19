@@ -8,7 +8,7 @@ let data = [];
 export default function PlayArea({ handleGameEnd }) {
     const [targetWord, setTargetWord] = useState('');
     const [userInput, setUserInput] = useState('');
-    const [timeLimit, setTimeLimit] = useState(0);
+    const [timeLimit, setTimeLimit] = useState(-1);
     const [difficultyLevel, setDifficultyLevel] = useState(Number(sessionStorage.getItem(Constants.DIFFICULTY_LEVEL)));
 
     const setRandomWord = () => {
