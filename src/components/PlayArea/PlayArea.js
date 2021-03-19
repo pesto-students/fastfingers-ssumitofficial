@@ -35,7 +35,7 @@ export default function PlayArea({ handleGameEnd }) {
 
     const handleTextChange = (e) => {
         setUserInput(e.target.value);
-        if (targetWord === e.target.value) {
+        if (targetWord.toLocaleLowerCase() === e.target.value.toLocaleLowerCase()) {
             setRandomWord();
             setDifficultyLevel(difficultyLevel + 0.1);
         }
@@ -61,7 +61,7 @@ export default function PlayArea({ handleGameEnd }) {
     return (
         <div className="col-8 p-0 text-right timer-container">
             <CountDown timeLimit={timeLimit} key={targetWord} handleGameEnd={handleGameEnd} />
-            <p className="target-text mt-3">{targetWord}</p>
+            <p className="target-text text-uppercase mt-3">{targetWord}</p>
             <input type="text" value={userInput} onChange={handleTextChange} />
         </div>
     );

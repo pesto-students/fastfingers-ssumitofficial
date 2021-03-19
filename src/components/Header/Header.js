@@ -36,6 +36,9 @@ export default function Header({ runTimer, onTimePassedChange }) {
                 clearInterval(timeout);
             }
         }
+        else {
+            setTimePassed(0);
+        }
     }, [timePassed, runTimer]);
 
     return (

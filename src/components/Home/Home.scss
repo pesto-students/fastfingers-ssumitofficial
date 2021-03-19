@@ -15,7 +15,6 @@
 
 .stop-game {
     color: #ff5155;
-    margin-top: 5rem;
     font-size: 2rem;
     cursor: pointer;
 
@@ -23,4 +22,28 @@
         margin-left: 1rem;
         font-size: 1.5rem;
     }
+}
+
+.game-result .title {
+    font-size: 2.5rem;
+}
+
+.game-result .time {
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+.game-result .high-score {
+    font-size: 1.7rem;
+}
+
+.game-result .play-again {
+    color: #ff5155;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
 }
