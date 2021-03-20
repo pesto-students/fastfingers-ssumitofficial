@@ -3,7 +3,8 @@ import ProtoTypes from "prop-types";
 import "./PlayArea.scss";
 import CountDown from "../CountDown/CountDown";
 import { Constants } from "../../Constants";
-let data = [];
+import data from "../../assets/data/dictionary.json";
+import TargetWord from "../TargetWord/TargetWord";
 
 export default function PlayArea({ handleGameEnd }) {
     const [targetWord, setTargetWord] = useState('');
@@ -42,26 +43,13 @@ export default function PlayArea({ handleGameEnd }) {
     }
 
     useEffect(() => {
-        fetch("/data/dictionary.json",
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                return response.json()
-            })
-            .then(response => {
-                data = response;
-                setRandomWord();
-            });
+        setRandomWord();
     }, []);
 
     return (
         <div className="col-8 p-0 text-right timer-container">
             <CountDown timeLimit={timeLimit} key={targetWord} handleGameEnd={handleGameEnd} />
-            <p className="target-text text-uppercase mt-3">{targetWord}</p>
+            <TargetWord targetWord={targetWord} userInput={userInput}/>
             <input type="text" value={userInput} onChange={handleTextChange} />
         </div>
     );
