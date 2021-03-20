@@ -26,12 +26,12 @@ export default function Header({ runTimer, onTimePassedChange }) {
     }
 
     useEffect(() => {
-        if(runTimer){
+        if (runTimer) {
             const timeout = setInterval(() => {
                 setTimePassed(timePassed + 1);
                 onTimePassedChange(timePassed + 1);
             }, 1000);
-    
+
             return () => {
                 clearInterval(timeout);
             }
@@ -44,21 +44,13 @@ export default function Header({ runTimer, onTimePassedChange }) {
     return (
         <div className="header-container px-5 py-4">
             <div className="row">
-                <div className="col-6">
+                <div className="col-sm-6 col-12">
                     <div className="row">
                         <div className="col-1">
                             <FontAwesomeIcon icon={faUser} />
                         </div>
                         <div className="col-9 text-left text-uppercase"> {userName} </div>
                     </div>
-                </div>
-                <div className="col-6 text-right">
-                    <span>fast-fingers</span>
-                </div>
-            </div>
-
-            <div className="row">
-                <div className="col-6">
                     <div className="row">
                         <div className="col-1">
                             <FontAwesomeIcon icon={faGamepad} />
@@ -66,10 +58,19 @@ export default function Header({ runTimer, onTimePassedChange }) {
                         <div className="col-9 text-left"> LEVEL : {difficultyLevelText} </div>
                     </div>
                 </div>
-                <div className="col-6 text-right">
-                    {
-                        runTimer ? <span>SCORE: {formatTime(timePassed)} </span> : ''
-                    }
+                <div className="col-sm-6 col-12">
+                    <div className="row">
+                        <div className="col-12 text-left text-sm-right game-title mt-0">
+                            <span>fast-fingers</span>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12 text-left text-sm-right">
+                            {
+                                runTimer ? <span>SCORE: {formatTime(timePassed)} </span> : ''
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

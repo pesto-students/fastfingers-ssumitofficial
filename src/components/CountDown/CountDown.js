@@ -26,7 +26,7 @@ export default function CountDown({timeLimit, handleGameEnd}) {
                 const strokeValue = calculateTimeFraction(timeLeft, timeLimit) * FULL_DASH_ARRAY;
                 setStroke(`${strokeValue} 283`);
             }
-            else if(timeLeft == 0) {
+            else if(timeLeft === 0) {
                 handleGameEnd();
                 clearInterval(timeout);
             }
@@ -56,7 +56,7 @@ export default function CountDown({timeLimit, handleGameEnd}) {
                 </g>
             </svg>
             {
-                timeLeft != -1 ? 
+                timeLeft !== -1 ? 
                 <span className="base-timer__label">{formatTime(timeLeft)}</span>
                 : ''
             }
