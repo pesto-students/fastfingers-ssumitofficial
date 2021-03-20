@@ -5,7 +5,7 @@ import ScoreBoard from "../ScoreBoard";
 import PlayArea from "../PlayArea/PlayArea";
 import { formatTime } from "../../util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes,faRedoAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faRedoAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default function Home() {
     const [gameResults, setGameResults] = useState([]);
@@ -18,7 +18,7 @@ export default function Home() {
             gameResults.shift();
         }
 
-        setGameResults([...gameResults, { gameId, timePassed }]);
+        setGameResults([...gameResults, { gameId, timePassed: (timePassed * 1000) }]);
         setGameId(gameId + 1);
         setRunTimer(false);
     }
@@ -50,9 +50,9 @@ export default function Home() {
                     <div className="row">
                         <div className="col-12 game-result">
                             <p className="text-white p-0 m-0 pt-5 title">SCORE : GAME {gameId - 1}</p>
-                            <p className="text-white p-0 m-0 time">{formatTime(timePassed)}</p>
+                            <p className="text-white p-0 m-0 time">{formatTime(timePassed * 1000, "mm:ss")}</p>
                             {
-                                Math.max(...gameResults.map(({timePassed}) => { return timePassed})) < timePassed ?
+                                Math.max(...gameResults.map(({ timePassed }) => { return timePassed })) < timePassed ?
                                     <p className="text-white p-0 m-0 high-score">New High Score</p>
                                     : ''
                             }

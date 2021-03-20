@@ -67,7 +67,7 @@ export default function Header({ runTimer, onTimePassedChange }) {
                     <div className="row">
                         <div className="col-12 text-left text-sm-right">
                             {
-                                runTimer ? <span>SCORE: {formatTime(timePassed)} </span> : ''
+                                runTimer ? <span>SCORE: {formatTime(timePassed * 1000, "mm:ss")} </span> : ''
                             }
                         </div>
                     </div>

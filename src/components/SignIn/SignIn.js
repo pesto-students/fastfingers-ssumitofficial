@@ -32,10 +32,10 @@ export default function SignIn() {
 
     return (
         <div className="container">
-            <img className="game-icon" src='images/keyboard-icon.svg' alt=""/>
+            <img className="game-icon" src='images/keyboard-icon.svg' alt="" />
             <p className="game-title">Fast  Fingers</p>
             <p className="game-sub-title">__________  the ultimate typing game  __________</p>
-            
+
             <input type="text" name="userName" placeholder="type your name" value={userName} onChange={handleUserNameChange} />
             { isInvalidUserName ? <p className="validation-error">Please enter username</p> : ''}
 

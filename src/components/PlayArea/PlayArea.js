@@ -28,9 +28,9 @@ export default function PlayArea({ handleGameEnd }) {
 
         const newTargetWord = filteredData[Math.floor(Math.random() * filteredData.length)];
 
-        const newTimeLimit = Math.ceil(newTargetWord.length / difficultyLevel);
+        const newTimeLimit = Math.ceil(newTargetWord.length / difficultyLevel) * 1000;
         setTargetWord(newTargetWord);
-        setTimeLimit(newTimeLimit > 2 ? newTimeLimit : 2);
+        setTimeLimit(newTimeLimit > 2000 ? newTimeLimit : 2000);
         setUserInput('');
     }
 
@@ -38,7 +38,7 @@ export default function PlayArea({ handleGameEnd }) {
         setUserInput(e.target.value);
         if (targetWord.toLocaleLowerCase() === e.target.value.toLocaleLowerCase()) {
             setRandomWord();
-            setDifficultyLevel(difficultyLevel + 0.1);
+            setDifficultyLevel(difficultyLevel + 0.01);
         }
     }
 
@@ -49,7 +49,7 @@ export default function PlayArea({ handleGameEnd }) {
     return (
         <div className="col-8 p-0 text-right timer-container">
             <CountDown timeLimit={timeLimit} key={targetWord} handleGameEnd={handleGameEnd} />
-            <TargetWord targetWord={targetWord} userInput={userInput}/>
+            <TargetWord targetWord={targetWord} userInput={userInput} />
             <input type="text" value={userInput} onChange={handleTextChange} />
         </div>
     );

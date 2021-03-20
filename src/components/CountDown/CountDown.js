@@ -6,7 +6,7 @@ const FULL_DASH_ARRAY = 283;
 let timePassed = 0;
 let timeout = '';
 
-export default function CountDown({timeLimit, handleGameEnd}) {
+export default function CountDown({ timeLimit, handleGameEnd }) {
     const [timeLeft, setTimeLeft] = useState(timeLimit);
     const [stroke, setStroke] = useState("283 283");
 
@@ -19,18 +19,18 @@ export default function CountDown({timeLimit, handleGameEnd}) {
         timeout = setInterval(() => {
             if (timeLeft > 0) {
                 //update timer
-                timePassed = timePassed += 1;
+                timePassed += 100;
                 setTimeLeft(timeLimit - timePassed);
 
                 //update stroke
-                const strokeValue = calculateTimeFraction(timeLeft, timeLimit) * FULL_DASH_ARRAY;
-                setStroke(`${strokeValue} 283`);
+                const strokeValue = calculateTimeFraction(timeLeft, timeLimit);
+                setStroke(`${strokeValue} ${FULL_DASH_ARRAY}`);
             }
-            else if(timeLeft === 0) {
+            else if (timeLeft === 0) {
                 handleGameEnd();
                 clearInterval(timeout);
             }
-        }, 1000);
+        }, 100);
 
         return () => {
             clearInterval(timeout);
@@ -56,9 +56,9 @@ export default function CountDown({timeLimit, handleGameEnd}) {
                 </g>
             </svg>
             {
-                timeLeft !== -1 ? 
-                <span className="base-timer__label">{formatTime(timeLeft)}</span>
-                : ''
+                timeLeft !== -1 ?
+                    <span className="base-timer__label">{formatTime(timeLeft)}</span>
+                    : ''
             }
         </div>
     );
@@ -70,5 +70,6 @@ CountDown.protoTypes = {
 }
 
 function calculateTimeFraction(timeLeft, timeLimit) {
-    return timeLeft / timeLimit;
+    const rawTimeFraction = timeLeft / timeLimit;
+    return (rawTimeFraction - (1 / timeLimit) * (1 - rawTimeFraction)) * FULL_DASH_ARRAY;
 }
