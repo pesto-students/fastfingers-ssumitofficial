@@ -19,7 +19,7 @@ function ScoreBoard({ gameResults }) {
     });
 
     return (
-        <div className="col-2 p-0 border score-board p-3 text-left">
+        <div className="col-12 col-sm-4 col-md-3 col-lg-2 p-0 mt-3 mt-sm-0 border score-board p-3 text-left">
             <p className="score-board-title text-center">SCORE BOARD</p>
             {content}
         </div>
