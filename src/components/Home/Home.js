@@ -63,13 +63,13 @@ export default function Home() {
 
             {
                 runTimer ?
-                    <div className="row px-5 fixed-bottom">
+                    <div className="row px-5 mt-sm-5 pt-sm-5 mb-2">
                         <p className="stop-game" onClick={handleGameEnd}>
                             <FontAwesomeIcon icon={faTimes} />
                             <span>STOP GAME</span>
                         </p>
                     </div> :
-                    <div className="row px-5 fixed-bottom">
+                    <div className="row px-5 fixed-bottom mb-2">
                         <p className="stop-game">
                             <span onClick={hanldeQuitGame}>QUIT</span>
                         </p>
