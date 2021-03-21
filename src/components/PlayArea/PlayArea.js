@@ -47,7 +47,7 @@ export default function PlayArea({ handleGameEnd }) {
     }, []);
 
     return (
-        <div className="col-8 p-0 text-right timer-container">
+        <div className="col-12 col-sm-8 p-0 mt-4 mt-sm-0 text-right timer-container">
             <CountDown timeLimit={timeLimit} key={targetWord} handleGameEnd={handleGameEnd} />
             <TargetWord targetWord={targetWord} userInput={userInput} />
             <input type="text" value={userInput} onChange={handleTextChange} />

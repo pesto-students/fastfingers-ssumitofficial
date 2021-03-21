@@ -42,7 +42,7 @@ export default function Home() {
 
             {
                 runTimer ?
-                    <div className="row px-5">
+                    <div className="row px-5 d-flex flex-column-reverse flex-sm-row">
                         <ScoreBoard gameResults={gameResults} />
                         <PlayArea handleGameEnd={handleGameEnd} />
                     </div>
@@ -63,13 +63,13 @@ export default function Home() {
 
             {
                 runTimer ?
-                    <div className="row px-5 footer">
+                    <div className="row px-5 fixed-bottom">
                         <p className="stop-game" onClick={handleGameEnd}>
                             <FontAwesomeIcon icon={faTimes} />
                             <span>STOP GAME</span>
                         </p>
                     </div> :
-                    <div className="row px-5 footer">
+                    <div className="row px-5 fixed-bottom">
                         <p className="stop-game">
                             <span onClick={hanldeQuitGame}>QUIT</span>
                         </p>
