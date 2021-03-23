@@ -6,24 +6,25 @@ import { faUser, faGamepad } from '@fortawesome/free-solid-svg-icons'
 import { Constants } from "../../Constants";
 import { formatTime } from "../../util";
 
-export default function Header({ runTimer, onTimePassedChange }) {
+export default function Header({ difficultyLevel, runTimer, onTimePassedChange }) {
 
     const [userName] = useState(sessionStorage.getItem(Constants.USER_NAME));
-    const [difficultyLevel] = useState(sessionStorage.getItem(Constants.DIFFICULTY_LEVEL));
     const [timePassed, setTimePassed] = useState(0);
+    const [difficultyLevelText, setDifficultyLevelText] = useState('');
 
-    let difficultyLevelText = '';
-    switch (difficultyLevel) {
-        case "1":
-            difficultyLevelText = 'EASY';
-            break;
-        case "1.5":
-            difficultyLevelText = 'MEDIUM';
-            break;
-        default:
-            difficultyLevelText = 'HARD';
-            break;
-    }
+    useEffect(() => {
+        switch (difficultyLevel) {
+            case 1:
+                setDifficultyLevelText('EASY');
+                break;
+            case 1.5:
+                setDifficultyLevelText('MEDIUM');
+                break;
+            default:
+                setDifficultyLevelText('HARD');
+                break;
+        }
+    }, [difficultyLevel]);
 
     useEffect(() => {
         if (runTimer) {
@@ -39,7 +40,7 @@ export default function Header({ runTimer, onTimePassedChange }) {
         else {
             setTimePassed(0);
         }
-    }, [timePassed, runTimer]);
+    }, [timePassed, runTimer, onTimePassedChange]);
 
     return (
         <div className="header-container px-5 py-4">
@@ -78,6 +79,7 @@ export default function Header({ runTimer, onTimePassedChange }) {
 }
 
 Header.propTypes = {
+    difficultyLevel: PropTypes.number.isRequired,
     runTimer: PropTypes.bool.isRequired,
     onTimePassedChange: PropTypes.func.isRequired
 }

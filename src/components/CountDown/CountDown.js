@@ -9,6 +9,19 @@ let timeout = '';
 export default function CountDown({ timeLimit, handleGameEnd }) {
     const [timeLeft, setTimeLeft] = useState(timeLimit);
     const [stroke, setStroke] = useState("283 283");
+    const [timerClasses, setTimerClasses] = useState("base-timer__path-remaining info");
+
+    const changeTimerColour = () => {
+        if (((timeLeft / timeLimit) * 100) > 50) {
+            setTimerClasses("base-timer__path-remaining info");
+        }
+        else if (((timeLeft / timeLimit) * 100) > 30) {
+            setTimerClasses("base-timer__path-remaining warning");
+        }
+        else {
+            setTimerClasses("base-timer__path-remaining alert");
+        }
+    }
 
     useEffect(() => {
         timePassed = 0;
@@ -30,12 +43,13 @@ export default function CountDown({ timeLimit, handleGameEnd }) {
                 handleGameEnd();
                 clearInterval(timeout);
             }
+            changeTimerColour();
         }, 100);
 
         return () => {
             clearInterval(timeout);
         }
-    }, [timeLeft]);
+    }, [timeLeft, timeLimit, handleGameEnd]);
 
     return (
         <div className="base-timer">
@@ -45,7 +59,7 @@ export default function CountDown({ timeLimit, handleGameEnd }) {
                     <path
                         id="base-timer-path-remaining"
                         strokeDasharray={stroke}
-                        className="base-timer__path-remaining info"
+                        className={timerClasses}
                         d="
                             M 50, 50
                             m -45, 0

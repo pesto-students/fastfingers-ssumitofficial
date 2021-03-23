@@ -31,13 +31,9 @@
     }
 }
 
-.game-result .title {
-    font-size: 2.5rem;
-}
-
-.game-result .time {
-    font-size: 3.5rem;
-    font-weight: 500;
+.game-result .title, .time {
+    font-size: 2rem;
+    font-family: "Press Start 2P";
 }
 
 .game-result .high-score {
@@ -48,4 +44,8 @@
     color: #ff5155;
     font-size: 1.6rem;
     cursor: pointer;
+}
+
+.auto-start-text {
+    font-size: 1.5rem;
 }

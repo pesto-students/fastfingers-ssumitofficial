@@ -5,14 +5,12 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons'
 import { Constants } from '../../Constants';
 
 export default function SignIn() {
-    const [userName, setUserName] = useState("");
-    const [difficultyLevel, setDifficultyLevel] = useState("");
+    const [userName, setUserName] = useState(sessionStorage.getItem(Constants.USER_NAME));
+    const [difficultyLevel, setDifficultyLevel] = useState("1");
     const [isInvalidUserName, setIsInvalidUserName] = useState(false);
-    const [isInvalidDifficultyLevel, setIsInvalidDifficultyLevel] = useState(false);
 
     const handleStartGameClick = () => {
         setIsInvalidUserName(userName.trim() === "");
-        setIsInvalidDifficultyLevel(difficultyLevel === "");
 
         if (userName.trim() === "" || difficultyLevel === "") {
             return;
@@ -36,16 +34,14 @@ export default function SignIn() {
             <p className="game-title">Fast  Fingers</p>
             <p className="game-sub-title">__________  the ultimate typing game  __________</p>
 
-            <input type="text" name="userName" placeholder="type your name" value={userName} onChange={handleUserNameChange} />
-            { isInvalidUserName ? <p className="validation-error">Please enter username</p> : ''}
+            <input type="text" className="text-left" name="userName" placeholder="type your name" value={userName} onChange={handleUserNameChange} />
+            { isInvalidUserName ? <p className="validation-error text-left">Please enter username</p> : ''}
 
             <select value={difficultyLevel} onChange={e => setDifficultyLevel(e.target.value)}>
-                <option value="">DIFFICULTY LEVEL</option>
                 <option value="1">EASY</option>
                 <option value="1.5">MEDIUM</option>
                 <option value="2">HARD</option>
             </select>
-            { isInvalidDifficultyLevel ? <p className="validation-error">Please select difficulty level</p> : ''}
 
             <p className="start-game" onClick={handleStartGameClick}>
                 <FontAwesomeIcon icon={faPlay} />
