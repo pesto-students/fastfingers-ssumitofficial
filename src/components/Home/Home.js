@@ -70,7 +70,7 @@ export default function Home() {
                     :
                     <div className="row">
                         <div className="col-12 game-result">
-                            <p className="text-white p-0 m-0 pt-5 title">SCORE : GAME {gameId - 1}</p>
+                            <p className="text-white p-0 m-0 pt-5 title">SCORE:GAME{gameId - 1}</p>
                             <p className="text-white p-0 m-0 time">{formatTime(timePassed * 1000, "mm:ss")}</p>
                             {
                                 Math.max(...gameResults.map(({ timePassed }) => { return timePassed })) < timePassed ?

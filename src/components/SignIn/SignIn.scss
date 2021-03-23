@@ -30,6 +30,10 @@ input {
     border-radius: 10px;
     width: 20rem;
     text-transform: uppercase;
+    font-weight: 500;
+    &:focus {
+        outline: none;
+    }
 }
 
 select {
