@@ -8,12 +8,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faRedoAlt } from '@fortawesome/free-solid-svg-icons'
 import { Constants } from "../../Constants";
 
+let restartGameCounterValue = 5;
+let restartTimer = () => { };
+
 export default function Home() {
     const [gameResults, setGameResults] = useState([]);
     const [timePassed, setTimePassed] = useState(0);
     const [gameId, setGameId] = useState(1);
     const [runTimer, setRunTimer] = useState(true);
     const [difficultyLevel, setDifficultyLevel] = useState(Number(sessionStorage.getItem(Constants.DIFFICULTY_LEVEL)));
+    const [restartGameCounter, setRestartGameCounter] = useState(restartGameCounterValue);
 
     const handleGameEnd = () => {
         if (gameResults.length > 7) {
@@ -23,6 +27,14 @@ export default function Home() {
         setGameResults([...gameResults, { gameId, timePassed: (timePassed * 1000) }]);
         setGameId(gameId + 1);
         setRunTimer(false);
+
+        restartTimer = setInterval(() => {
+            if (restartGameCounterValue === 1) {
+                handlePlayAgain();
+                return;
+            }
+            setRestartGameCounter(--restartGameCounterValue);
+        }, 1000);
     }
 
     const handleOnTimePassedChange = (currentTimePassed) => {
@@ -34,6 +46,9 @@ export default function Home() {
     }
 
     const handlePlayAgain = () => {
+        restartGameCounterValue = 5
+        setRestartGameCounter(restartGameCounterValue);
+        clearInterval(restartTimer);
         setRunTimer(true);
     }
 
@@ -44,13 +59,13 @@ export default function Home() {
 
     return (
         <div>
-            <Header runTimer={runTimer} onTimePassedChange={handleOnTimePassedChange} difficultyLevel={difficultyLevel}/>
+            <Header runTimer={runTimer} onTimePassedChange={handleOnTimePassedChange} difficultyLevel={difficultyLevel} />
 
             {
                 runTimer ?
                     <div className="row px-5 d-flex flex-column-reverse flex-sm-row">
                         <ScoreBoard gameResults={gameResults} />
-                        <PlayArea handleGameEnd={handleGameEnd} handleLevelUpgrade={handleLevelUpgrade}/>
+                        <PlayArea handleGameEnd={handleGameEnd} handleLevelUpgrade={handleLevelUpgrade} />
                     </div>
                     :
                     <div className="row">
@@ -63,6 +78,7 @@ export default function Home() {
                                     : ''
                             }
                             <p className="play-again mt-4" onClick={handlePlayAgain}><FontAwesomeIcon icon={faRedoAlt} /> PLAY AGAIN</p>
+                            <p className="text-white auto-start-text">Game will restart in {restartGameCounter} seconds</p>
                         </div>
                     </div>
             }
