@@ -6,12 +6,14 @@ import PlayArea from "../PlayArea/PlayArea";
 import { formatTime } from "../../util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faRedoAlt } from '@fortawesome/free-solid-svg-icons'
+import { Constants } from "../../Constants";
 
 export default function Home() {
     const [gameResults, setGameResults] = useState([]);
     const [timePassed, setTimePassed] = useState(0);
     const [gameId, setGameId] = useState(1);
     const [runTimer, setRunTimer] = useState(true);
+    const [difficultyLevel, setDifficultyLevel] = useState(Number(sessionStorage.getItem(Constants.DIFFICULTY_LEVEL)));
 
     const handleGameEnd = () => {
         if (gameResults.length > 7) {
@@ -28,7 +30,6 @@ export default function Home() {
     }
 
     const hanldeQuitGame = () => {
-        sessionStorage.clear();
         window.location.href = "/";
     }
 
@@ -36,15 +37,20 @@ export default function Home() {
         setRunTimer(true);
     }
 
+    const handleLevelUpgrade = (newLevel) => {
+        setDifficultyLevel(newLevel);
+        sessionStorage.setItem(Constants.DIFFICULTY_LEVEL, newLevel);
+    }
+
     return (
         <div>
-            <Header runTimer={runTimer} onTimePassedChange={handleOnTimePassedChange} />
+            <Header runTimer={runTimer} onTimePassedChange={handleOnTimePassedChange} difficultyLevel={difficultyLevel}/>
 
             {
                 runTimer ?
                     <div className="row px-5 d-flex flex-column-reverse flex-sm-row">
                         <ScoreBoard gameResults={gameResults} />
-                        <PlayArea handleGameEnd={handleGameEnd} />
+                        <PlayArea handleGameEnd={handleGameEnd} handleLevelUpgrade={handleLevelUpgrade}/>
                     </div>
                     :
                     <div className="row">
@@ -63,7 +69,7 @@ export default function Home() {
 
             {
                 runTimer ?
-                    <div className="row px-5 mt-sm-5 pt-sm-5 mb-2">
+                    <div className="row px-5 mt-sm-5 mb-2">
                         <p className="stop-game" onClick={handleGameEnd}>
                             <FontAwesomeIcon icon={faTimes} />
                             <span>STOP GAME</span>

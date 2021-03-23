@@ -6,7 +6,7 @@ import { Constants } from "../../Constants";
 import data from "../../assets/data/dictionary.json";
 import TargetWord from "../TargetWord/TargetWord";
 
-export default function PlayArea({ handleGameEnd }) {
+export default function PlayArea({ handleGameEnd, handleLevelUpgrade }) {
     const [targetWord, setTargetWord] = useState('');
     const [userInput, setUserInput] = useState('');
     const [timeLimit, setTimeLimit] = useState(-1);
@@ -38,7 +38,16 @@ export default function PlayArea({ handleGameEnd }) {
         setUserInput(e.target.value);
         if (targetWord.toLocaleLowerCase() === e.target.value.toLocaleLowerCase()) {
             setRandomWord();
-            setDifficultyLevel(difficultyLevel + 0.01);
+
+            const newDifficultyLevel = Number((difficultyLevel + 0.01).toFixed(1));
+            setDifficultyLevel(newDifficultyLevel);
+
+            if(newDifficultyLevel === 1.5){
+                handleLevelUpgrade(1.5);
+            }
+            else if(newDifficultyLevel === 2.0){
+                handleLevelUpgrade(2);
+            }
         }
     }
 
@@ -56,5 +65,6 @@ export default function PlayArea({ handleGameEnd }) {
 }
 
 PlayArea.protoTypes = {
-    handleGameEnd: ProtoTypes.func.isRequired
+    handleGameEnd: ProtoTypes.func.isRequired,
+    handleLevelUpgrade: ProtoTypes.func.isRequired
 }

@@ -35,7 +35,7 @@ export default function CountDown({ timeLimit, handleGameEnd }) {
         return () => {
             clearInterval(timeout);
         }
-    }, [timeLeft]);
+    }, [timeLeft, timeLimit, handleGameEnd]);
 
     return (
         <div className="base-timer">
