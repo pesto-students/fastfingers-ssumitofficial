@@ -27,7 +27,15 @@
 }
 
 .info {
-    color: #ff5155;
+    color: green;
+}
+
+.warning {
+    color: orange;
+}
+
+.alert {
+    color: red;;
 }
 
 .base-timer__path-remaining {
