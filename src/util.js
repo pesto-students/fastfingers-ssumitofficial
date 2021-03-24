@@ -1,3 +1,9 @@
+import data from "./assets/data/dictionary.json";
+
+export const EASY_ARRAY = data.filter((word) => word.length <= 4);
+export const MEDIUM_ARRAY = data.filter((word) => word.length >= 5 && word.length <= 8);
+export const HARD_ARRAY = data.filter((word) => word.length > 8);
+
 export function formatTime(time, format = "ss:ms") {
   let minutes = Math.floor(time / 1000 / 60);
   let seconds = Math.floor(time / 1000);
