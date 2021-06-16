@@ -1,5 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 50px;
+}
+
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(/images/background-img.svg), linear-gradient(to top, #063C47, #000000);
+  background-blend-mode: multiply;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
 }
 
 .App-logo {
