@@ -87,6 +87,8 @@ Zeplin App Link: zpl://project?pid=6023da0b656a94025ca7b58e
 
 ## Final Product
 
+|                          |                          |
+| :----------------------: | :----------------------: |
 | ![](final-product/1.png) | ![](final-product/2.png) |
 | ![](final-product/3.png) | ![](final-product/4.png) |
 | ![](final-product/5.png) | ![](final-product/6.png) |
